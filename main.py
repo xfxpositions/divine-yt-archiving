@@ -66,7 +66,7 @@ def download_video_from_id(id: str, output_dir):
       res = yt.streams.get_lowest_resolution().resolution
       output_file_name = sanitize_filename(f"{video_title}.{id}.{res}.mp4") 
       output_file_path = os.path.join(output_file_dir, sanitize_filename(output_file_name) ) 
-      yt.streams.get_lowest_resolution().download(output_path=output_file_path)
+      yt.streams.get_lowest_resolution().download(output_path=output_file_dir, filename=sanitize_filename(f"{video_title}.{id}.{res}.mp4"))
       print(output_file_name)
       
       
@@ -74,7 +74,7 @@ def download_video_from_id(id: str, output_dir):
       output_file_name = f"{video_title}.{id}.{res}.mp4"
       output_file_path = os.path.join(output_file_dir, sanitize_filename(output_file_name) )
       print(output_file_name)
-      yt.streams.get_by_resolution("720p").download(output_path=output_file_path)
+      yt.streams.get_by_resolution("720p").download(output_path=output_file_dir, filename= sanitize_filename(f"{video_title}.{id}.{res}.mp4") )
 
       videos_count += 1
       print(f"videos count is now {str(videos_count)}")
